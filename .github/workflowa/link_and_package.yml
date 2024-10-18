@@ -13,11 +13,11 @@ jobs:
     steps:
     #step-1
       - name: checkout code
-        uses: action/checkout-code@v2
+        uses: actions/checkoutcode@v2
 
     #step-2
       - name: setup node envi
-        uses: action/setup-node@v4
+        uses: actions/setup-node@v4
 
     #step-3
       - name: Install Dep
@@ -34,7 +34,7 @@ jobs:
     steps:
     #step-1
       - name: checkout code
-        uses: action/checkout-code@v2
+        uses: actions/checkoutcode@v2
 
     #step-2
       - name: create a package
@@ -42,7 +42,7 @@ jobs:
 
     #step-3
       - name: upload the package
-        uses: action/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: react-app-package
           path: react-app-package.zip
