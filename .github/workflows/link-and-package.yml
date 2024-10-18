@@ -1,0 +1,48 @@
+name: link and package the react app
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  lint:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    #step-1
+      - name: checkout code
+        uses: action/checkout-code@v2
+    
+    #step-2
+      - name: setup node envi
+        uses: action/setup-node@v4
+
+    #step-3
+      - name: Install Dep
+        uses: npm install
+    
+    #step-4
+      - name: Run lint
+        uses: npm run lint
+  
+  package:
+    runs-on: 'ubuntu-latest'
+    needs: lint
+
+    steps:
+    #step-1 : checkout the code
+      - name: checkout code
+        uses: action/checkout-code@v2
+
+    #step-2 : create a package
+      - name: create a package
+        uses: zip -r react-app-package.zip .
+    
+    #step-3 : Upload the package to
+      - name: Upload the package
+        uses: action/upload-artifact@v4
+        with:
+          name: react-app-package
+          path: react-app-package.zip   
+  
